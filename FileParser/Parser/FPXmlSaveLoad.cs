@@ -7,7 +7,7 @@ namespace FileParser.Parser
     /// <summary>
     /// Save or load a xml file that contain an object.
     /// </summary>
-    public class DAXmlSaveLoad : ISaveLoad
+    public class FPXmlSaveLoad : ISaveLoad
     {
 
         private readonly string m_extention = "xml";
@@ -19,7 +19,7 @@ namespace FileParser.Parser
 
 
         /// <summary>
-        /// This return the Extention of this <see cref="DAXmlSaveLoad"/>.
+        /// This return the Extention of this <see cref="FPXmlSaveLoad"/>.
         /// </summary>
         public string Extention
         {
@@ -36,9 +36,9 @@ namespace FileParser.Parser
 
 
         /// <summary>
-        /// Create a new instace of <see cref="DAXmlSaveLoad"/>.
+        /// Create a new instace of <see cref="FPXmlSaveLoad"/>.
         /// </summary>
-        public DAXmlSaveLoad()
+        public FPXmlSaveLoad()
         {
 
         }

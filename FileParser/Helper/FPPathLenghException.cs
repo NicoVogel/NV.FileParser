@@ -6,23 +6,23 @@ namespace FileParser.Helper
     /// <summary>
     /// Path is to long for the fileSystem.
     /// </summary>
-    public class DAPathLenghException : ArgumentOutOfRangeException
+    public class FPPathLenghException : ArgumentOutOfRangeException
     {
 
         /// <summary>
-        /// Create a new <see cref="DAPathLenghException"/>.
+        /// Create a new <see cref="FPPathLenghException"/>.
         /// </summary>
-        public DAPathLenghException()
+        public FPPathLenghException()
         {
         }
 
 
 
         /// <summary>
-        /// Create a new <see cref="DAPathLenghException"/> with a parameter name.
+        /// Create a new <see cref="FPPathLenghException"/> with a parameter name.
         /// </summary>
         /// <param name="paramName">Parameter name</param>
-        public DAPathLenghException(string paramName) : base(paramName)
+        public FPPathLenghException(string paramName) : base(paramName)
         {
 
         }
@@ -30,11 +30,11 @@ namespace FileParser.Helper
 
 
         /// <summary>
-        /// Create a new <see cref="DAPathLenghException"/> with a parameter name and a message.
+        /// Create a new <see cref="FPPathLenghException"/> with a parameter name and a message.
         /// </summary>
         /// <param name="paramName">Parameter name</param>
         /// <param name="message">Message</param>
-        public DAPathLenghException(string paramName, string message) : base(paramName, message)
+        public FPPathLenghException(string paramName, string message) : base(paramName, message)
         {
 
         }

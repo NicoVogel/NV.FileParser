@@ -28,6 +28,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\FileParser.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -44,15 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DADataManager.cs" />
-    <Compile Include="Helper\DAHelper.cs" />
-    <Compile Include="Helper\DAPathLenghException.cs" />
+    <Compile Include="FPDataManager.cs" />
+    <Compile Include="Helper\FPHelper.cs" />
+    <Compile Include="Helper\FPPathLenghException.cs" />
     <Compile Include="IOResult.cs" />
     <Compile Include="ISaveLoad.cs" />
-    <Compile Include="Parser\DABinarySaveLoad.cs" />
-    <Compile Include="Parser\DAJsonSaveLoad.cs" />
-    <Compile Include="Parser\DATextSaveLoad.cs" />
-    <Compile Include="Parser\DAXmlSaveLoad.cs" />
+    <Compile Include="Parser\FPBinarySaveLoad.cs" />
+    <Compile Include="Parser\FPJsonSaveLoad.cs" />
+    <Compile Include="Parser\FPTextSaveLoad.cs" />
+    <Compile Include="Parser\FPXmlSaveLoad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

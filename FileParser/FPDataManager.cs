@@ -10,7 +10,7 @@ namespace FileParser
     /// <summary>
     /// This class manage the save and load commands.
     /// </summary>
-    public class DADataManager
+    public class FPDataManager
     {
 
         private Dictionary<string, ISaveLoad> m_saveLoad;
@@ -45,27 +45,27 @@ namespace FileParser
 
 
         /// <summary>
-        /// Create a new instance of <see cref="DADataManager"/>.
+        /// Create a new instance of <see cref="FPDataManager"/>.
         /// </summary>
-        public DADataManager()
+        public FPDataManager()
         {
             m_saveLoad = new Dictionary<string, ISaveLoad>();
             AllowedIO = new List<string>();
             ISaveLoad io = null;
 
-            io = new DABinarySaveLoad();
+            io = new FPBinarySaveLoad();
             m_saveLoad.Add(io.Extention, io);
             AllowedIO.Add(io.Extention);
 
-            io = new DAJsonSaveLoad();
+            io = new FPJsonSaveLoad();
             m_saveLoad.Add(io.Extention, io);
             AllowedIO.Add(io.Extention);
 
-            io = new DAXmlSaveLoad();
+            io = new FPXmlSaveLoad();
             m_saveLoad.Add(io.Extention, io);
             AllowedIO.Add(io.Extention);
 
-            io = new DATextSaveLoad();
+            io = new FPTextSaveLoad();
             m_saveLoad.Add(io.Extention, io);
             AllowedIO.Add(io.Extention);
         }
@@ -90,7 +90,7 @@ namespace FileParser
             try
             {
                 ArgumentException ex;
-                if (DAHelper.IsPathValid(path, out ex))
+                if (FPHelper.IsPathValid(path, out ex))
                 {
                     if (AllowedIO.Contains(type))
                     {

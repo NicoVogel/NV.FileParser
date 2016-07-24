@@ -1,26 +1,25 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
+using Newtonsoft.Json;
 
 namespace FileParser.Parser
 {
     /// <summary>
-    /// Save or load a binary file that contain an object.
+    /// Save or load a json file that contain an object.
     /// </summary>
-    public class DABinarySaveLoad : ISaveLoad
+    public class FPJsonSaveLoad : ISaveLoad
     {
 
-        private readonly string m_extention = "bin";
+        private readonly string m_extention = "json";
 
 
 
         #region Properties
 
-
+        
 
         /// <summary>
-        /// This return the Extention of this <see cref="DABinarySaveLoad"/>.
+        /// This return the Extention of this <see cref="FPJsonSaveLoad"/>.
         /// </summary>
         public string Extention
         {
@@ -34,12 +33,12 @@ namespace FileParser.Parser
 
         #endregion
 
-
+        
 
         /// <summary>
-        /// Create a new instace of <see cref="DABinarySaveLoad"/>.
+        /// Create a new instace of <see cref="FPJsonSaveLoad"/>.
         /// </summary>
-        public DABinarySaveLoad()
+        public FPJsonSaveLoad()
         {
 
         }
@@ -59,25 +58,19 @@ namespace FileParser.Parser
         public IOResult Load<T>(string path)
         {
             IOResult res = new IOResult();
-            FileStream stream = null;
-            BinaryFormatter format;
 
             try
             {
-                stream = new FileStream(path, FileMode.Open);
-                format = new BinaryFormatter();
-                res.Value = format.Deserialize(stream);
-
+                using(StreamReader sr = new StreamReader(path))
+                {
+                    string json = sr.ReadToEnd();
+                    res.Value = JsonConvert.DeserializeObject<T>(json);
+                }
             }
             catch (Exception ex)
             {
                 res.IOException = ex;
                 res.Value = null;
-            }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
             }
             
             return res;
@@ -95,26 +88,17 @@ namespace FileParser.Parser
         public IOResult Save<T>(object value, string path)
         {
             IOResult res = new IOResult();
-            FileStream stream = null;
-            BinaryFormatter format;
+
             try
             {
-                stream = new FileStream(path, FileMode.Create);
-                format = new BinaryFormatter();
-                format.Serialize(stream, value);
+                string json = JsonConvert.SerializeObject(value);
+                File.WriteAllText(path, json);
             }
             catch (Exception ex)
             {
                 res.IOException = ex;
             }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
-            }
-
-
-
+            
             return res;
         }
 
@@ -122,7 +106,6 @@ namespace FileParser.Parser
 
         #endregion
 
-
-
     }
 }
+

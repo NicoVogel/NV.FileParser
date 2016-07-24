@@ -11,7 +11,7 @@ namespace FileParser.Helper
     /// <summary>
     /// 
     /// </summary>
-    public static class DAHelper
+    public static class FPHelper
     {
         /// <summary>
         /// The max length of Windows 2000 is 254
@@ -57,7 +57,7 @@ namespace FileParser.Helper
         {
             if (path.Length > 255)
             {
-                ex = new DAPathLenghException(nameof(path), "The String is longer than 255 charecters.");
+                ex = new FPPathLenghException(nameof(path), "The String is longer than 255 charecters.");
                 return false;
             }
             else

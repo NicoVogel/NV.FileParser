@@ -10,7 +10,7 @@ namespace FileParser.Parser
     /// <summary>
     /// Save or load a text file that contain an string.
     /// </summary>
-    public class DATextSaveLoad : ISaveLoad
+    public class FPTextSaveLoad : ISaveLoad
     {
 
         private readonly string m_extention = "txt";
@@ -22,7 +22,7 @@ namespace FileParser.Parser
 
 
         /// <summary>
-        /// This return the Extention of this <see cref="DATextSaveLoad"/>.
+        /// This return the Extention of this <see cref="FPTextSaveLoad"/>.
         /// </summary>
         public string Extention
         {
@@ -39,9 +39,9 @@ namespace FileParser.Parser
 
 
         /// <summary>
-        /// Create a new instace of <see cref="DATextSaveLoad"/>.
+        /// Create a new instace of <see cref="FPTextSaveLoad"/>.
         /// </summary>
-        public DATextSaveLoad()
+        public FPTextSaveLoad()
         {
 
         }
