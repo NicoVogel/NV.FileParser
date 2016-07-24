@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using NV.FileParser.Parser;
-using NV.FileParser.Properties;
-using NV.FileParser.Helper;
+using FileParser.Parser;
+using FileParser.Properties;
+using FileParser.Helper;
 
-namespace NV.FileParser
+namespace FileParser
 {
     /// <summary>
     /// This class manage the save and load commands.

@@ -1,17 +1,16 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 
-namespace NV.FileParser.Parser
+namespace FileParser.Parser
 {
     /// <summary>
-    /// Save or load a binary file that contain an object.
+    /// Save or load a xml file that contain an object.
     /// </summary>
-    public class DABinarySaveLoad : ISaveLoad
+    public class DAXmlSaveLoad : ISaveLoad
     {
 
-        private readonly string m_extention = "bin";
+        private readonly string m_extention = "xml";
 
 
 
@@ -20,7 +19,7 @@ namespace NV.FileParser.Parser
 
 
         /// <summary>
-        /// This return the Extention of this <see cref="DABinarySaveLoad"/>.
+        /// This return the Extention of this <see cref="DAXmlSaveLoad"/>.
         /// </summary>
         public string Extention
         {
@@ -37,9 +36,9 @@ namespace NV.FileParser.Parser
 
 
         /// <summary>
-        /// Create a new instace of <see cref="DABinarySaveLoad"/>.
+        /// Create a new instace of <see cref="DAXmlSaveLoad"/>.
         /// </summary>
-        public DABinarySaveLoad()
+        public DAXmlSaveLoad()
         {
 
         }
@@ -59,27 +58,22 @@ namespace NV.FileParser.Parser
         public IOResult Load<T>(string path)
         {
             IOResult res = new IOResult();
-            FileStream stream = null;
-            BinaryFormatter format;
+            XmlSerializer serializer = new XmlSerializer(typeof(T));
 
             try
             {
-                stream = new FileStream(path, FileMode.Open);
-                format = new BinaryFormatter();
-                res.Value = format.Deserialize(stream);
-
+                using (StreamReader reader = new StreamReader(path))
+                {
+                    res.Value = serializer.Deserialize(reader);
+                    
+                }
             }
             catch (Exception ex)
             {
                 res.IOException = ex;
                 res.Value = null;
             }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
-            }
-            
+
             return res;
         }
 
@@ -95,25 +89,19 @@ namespace NV.FileParser.Parser
         public IOResult Save<T>(object value, string path)
         {
             IOResult res = new IOResult();
-            FileStream stream = null;
-            BinaryFormatter format;
+            XmlSerializer serializer = new XmlSerializer(typeof(T));
+
             try
             {
-                stream = new FileStream(path, FileMode.Create);
-                format = new BinaryFormatter();
-                format.Serialize(stream, value);
+                using (StreamWriter writer = new StreamWriter(path))
+                {
+                    serializer.Serialize(writer, value);
+                }
             }
             catch (Exception ex)
             {
                 res.IOException = ex;
             }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
-            }
-
-
 
             return res;
         }
@@ -121,7 +109,6 @@ namespace NV.FileParser.Parser
 
 
         #endregion
-
 
 
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NV.FileParser
+namespace FileParser
 {
     /// <summary>
     /// This interface is used to define a new parser to save and load an object.

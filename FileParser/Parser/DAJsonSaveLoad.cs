@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.Serialization.Json;
 using Newtonsoft.Json;
 
-namespace NV.FileParser.Parser
+namespace FileParser.Parser
 {
     /// <summary>
     /// Save or load a json file that contain an object.

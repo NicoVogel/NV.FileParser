@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace NV.FileParser.Helper
+namespace FileParser.Helper
 {
     /// <summary>
     /// Path is to long for the fileSystem.

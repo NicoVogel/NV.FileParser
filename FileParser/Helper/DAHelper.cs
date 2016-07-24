@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NV.FileParser.Helper
+namespace FileParser.Helper
 {
     /// <summary>
     /// 
@@ -62,9 +62,7 @@ namespace NV.FileParser.Helper
             }
             else
                 ex = null;
-
-
-            Windows.MAX_Path
+            
 
             string validCharacters = new String(System.IO.Path.GetInvalidFileNameChars());
             string pattern = "[" + Regex.Escape(validCharacters) + "]";

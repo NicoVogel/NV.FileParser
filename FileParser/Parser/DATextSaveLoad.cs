@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NV.FileParser.Parser
+namespace FileParser.Parser
 {
     /// <summary>
     /// Save or load a text file that contain an string.
@@ -114,7 +114,7 @@ namespace NV.FileParser.Parser
                 rows = File.ReadAllLines(path);
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 rows = null;
                 return false;
