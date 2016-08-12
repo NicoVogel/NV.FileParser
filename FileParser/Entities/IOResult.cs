@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FileParser
+namespace FileParser.Entities
 {
     /// <summary>
     /// This is the result of a save or load operation.

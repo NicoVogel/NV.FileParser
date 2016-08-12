@@ -48,7 +48,7 @@
     <Compile Include="FPDataManager.cs" />
     <Compile Include="Helper\FPHelper.cs" />
     <Compile Include="Helper\FPPathLenghException.cs" />
-    <Compile Include="IOResult.cs" />
+    <Compile Include="Entities\IOResult.cs" />
     <Compile Include="ISaveLoad.cs" />
     <Compile Include="Parser\FPBinarySaveLoad.cs" />
     <Compile Include="Parser\FPJsonSaveLoad.cs" />

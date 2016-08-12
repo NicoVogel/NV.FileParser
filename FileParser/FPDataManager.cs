@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using FileParser.Entities;
 using FileParser.Parser;
 using FileParser.Properties;
 using FileParser.Helper;

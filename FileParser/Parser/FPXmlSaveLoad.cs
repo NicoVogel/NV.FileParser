@@ -2,6 +2,8 @@
 using System.IO;
 using System.Xml.Serialization;
 
+using FileParser.Entities;
+
 namespace FileParser.Parser
 {
     /// <summary>
