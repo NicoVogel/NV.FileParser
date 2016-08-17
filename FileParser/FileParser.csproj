@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\FileParser.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -47,7 +48,6 @@
   <ItemGroup>
     <Compile Include="FPDataManager.cs" />
     <Compile Include="Helper\FPHelper.cs" />
-    <Compile Include="Helper\FPPathLenghException.cs" />
     <Compile Include="Entities\IOResult.cs" />
     <Compile Include="ISaveLoad.cs" />
     <Compile Include="Parser\FPBinarySaveLoad.cs" />

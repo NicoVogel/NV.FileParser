@@ -61,6 +61,42 @@ namespace FileParser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The extension is too long (more than 5 characters)..
+        /// </summary>
+        internal static string helperExtensionLengthLong {
+            get {
+                return ResourceManager.GetString("helperExtensionLengthLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The extension is not long enough (less than 3 characters)..
+        /// </summary>
+        internal static string helperExtensionLengthShort {
+            get {
+                return ResourceManager.GetString("helperExtensionLengthShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The extension contain non letter characters..
+        /// </summary>
+        internal static string helperExtensionLetter {
+            get {
+                return ResourceManager.GetString("helperExtensionLetter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The String is longer than {0} charecters..
+        /// </summary>
+        internal static string helperPathLenght {
+            get {
+                return ResourceManager.GetString("helperPathLenght", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Der gewählte Datentyp kann nicht gelesen werden..
         /// </summary>
         internal static string LoadNoAllowedIO {

@@ -2,6 +2,7 @@
 using System.IO;
 
 using FileParser.Entities;
+using FileParser.Helper;
 
 namespace FileParser.Parser
 {
@@ -11,7 +12,8 @@ namespace FileParser.Parser
     public class FPTextSaveLoad : ISaveLoad
     {
 
-        private readonly string m_extention = "txt";
+        private readonly string m_defaultExtension = "txt";
+        private string m_extension = "txt";
 
 
 
@@ -22,11 +24,26 @@ namespace FileParser.Parser
         /// <summary>
         /// This return the Extention of this <see cref="FPTextSaveLoad"/>.
         /// </summary>
-        public string Extention
+        public string Extension
         {
             get
             {
-                return m_extention;
+                if (String.IsNullOrEmpty(m_extension))
+                    m_extension = m_defaultExtension;
+                return m_extension;
+            }
+        }
+
+
+
+        /// <summary>
+        /// This return the default extention of this <see cref="FPTextSaveLoad"/>.
+        /// </summary>
+        public string DefaultExtension
+        {
+            get
+            {
+                return m_defaultExtension;
             }
         }
 
@@ -131,7 +148,27 @@ namespace FileParser.Parser
         {
             return !Save<String>(text, path).HasError;
         }
-        
+
+
+
+        /// <summary>
+        /// Change the Extention of this <see cref="FPTextSaveLoad"/>.
+        /// </summary>
+        /// <param name="extension">Only letters are allowed.</param>
+        /// <exception cref="ArgumentException"></exception>
+        public void SetExtention(string extension)
+        {
+            ArgumentException ex;
+            if (FPHelper.IsExtentionValid(extension, out ex))
+            {
+                m_extension = extension;
+            }
+            else
+            {
+                throw ex;
+            }
+        }
+
 
 
         #endregion

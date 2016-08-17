@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="helperExtensionLengthLong" xml:space="preserve">
+    <value>The extension is too long (more than 5 characters).</value>
+  </data>
+  <data name="helperExtensionLengthShort" xml:space="preserve">
+    <value>The extension is not long enough (less than 3 characters).</value>
+  </data>
+  <data name="helperExtensionLetter" xml:space="preserve">
+    <value>The extension contain non letter characters.</value>
+  </data>
+  <data name="helperPathLenght" xml:space="preserve">
+    <value>The String is longer than {0} charecters.</value>
+  </data>
   <data name="LoadNoAllowedIO" xml:space="preserve">
     <value>Der gewählte Datentyp kann nicht gelesen werden.</value>
   </data>

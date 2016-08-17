@@ -1,4 +1,5 @@
-﻿using FileParser.Entities;
+﻿using System;
+using FileParser.Entities;
 
 namespace FileParser
 {
@@ -10,9 +11,24 @@ namespace FileParser
 
 
         /// <summary>
-        /// This return the Extention of this <see cref="ISaveLoad"/>.
+        /// This return the extention of this <see cref="ISaveLoad"/>.
         /// </summary>
-        string Extention { get; }
+        string Extension { get; }
+
+
+        /// <summary>
+        /// This return the default extention of this <see cref="ISaveLoad"/>.
+        /// </summary>
+        string DefaultExtension { get; }
+
+
+
+        /// <summary>
+        /// Change the Extention of this <see cref="ISaveLoad"/>.
+        /// </summary>
+        /// <param name="extention">Only letters are allowed.</param>
+        /// <exception cref="ArgumentException"></exception>
+        void SetExtention(string extention);
 
 
 

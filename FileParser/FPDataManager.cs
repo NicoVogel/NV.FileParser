@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using FileParser.Entities;
@@ -15,7 +16,6 @@ namespace FileParser
     {
 
         private Dictionary<string, ISaveLoad> m_saveLoad;
-        private List<string> m_allowedIO;
 
 
 
@@ -30,12 +30,38 @@ namespace FileParser
         {
             get
             {
-                return m_allowedIO;
+                return SaveLoad.Keys.ToList();
+            }
+        }
+
+
+
+        /// <summary>
+        /// Contain the <see cref="ISaveLoad"/> objects.
+        /// </summary>
+        public Dictionary<string, ISaveLoad> SaveLoad
+        {
+            get
+            {
+                return m_saveLoad;
             }
 
-            private set
+            set
             {
-                m_allowedIO = value;
+                m_saveLoad = value;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Contain the default save load objects.
+        /// </summary>
+        public Dictionary<string, ISaveLoad> DefaultSaveLoad
+        {
+            get
+            {
+                return defaultSaveLoadObjects();
             }
         }
 
@@ -50,25 +76,7 @@ namespace FileParser
         /// </summary>
         public FPDataManager()
         {
-            m_saveLoad = new Dictionary<string, ISaveLoad>();
-            AllowedIO = new List<string>();
-            ISaveLoad io = null;
-
-            io = new FPBinarySaveLoad();
-            m_saveLoad.Add(io.Extention, io);
-            AllowedIO.Add(io.Extention);
-
-            io = new FPJsonSaveLoad();
-            m_saveLoad.Add(io.Extention, io);
-            AllowedIO.Add(io.Extention);
-
-            io = new FPXmlSaveLoad();
-            m_saveLoad.Add(io.Extention, io);
-            AllowedIO.Add(io.Extention);
-
-            io = new FPTextSaveLoad();
-            m_saveLoad.Add(io.Extention, io);
-            AllowedIO.Add(io.Extention);
+            SaveLoad = defaultSaveLoadObjects();
         }
 
 
@@ -95,8 +103,8 @@ namespace FileParser
                 {
                     if (AllowedIO.Contains(type))
                     {
-                        if (m_saveLoad[type] != null)
-                            result = m_saveLoad[type].Save<T>(value, path);
+                        if (SaveLoad[type] != null)
+                            result = SaveLoad[type].Save<T>(value, path);
                     }
                     else
                     {
@@ -129,8 +137,8 @@ namespace FileParser
             {
                 if (AllowedIO.Contains(type))
                 {
-                    if (m_saveLoad[type] != null)
-                        result = m_saveLoad[type].Load<T>(path);
+                    if (SaveLoad[type] != null)
+                        result = SaveLoad[type].Load<T>(path);
                 }
                 else
                 {
@@ -144,13 +152,42 @@ namespace FileParser
             return result;
         }
 
-        
-        
+
+
 
         #endregion
-
         
+        #region Private Methods
 
+
+
+        /// <summary>
+        /// This method create the default set of <see cref="ISaveLoad"/> objects.
+        /// </summary>
+        /// <returns></returns>
+        private Dictionary<string, ISaveLoad> defaultSaveLoadObjects()
+        {
+            var saveLoad = new Dictionary<string, ISaveLoad>();
+            ISaveLoad io = null;
+
+            io = new FPBinarySaveLoad();
+            saveLoad.Add(io.Extension, io);
+
+            io = new FPJsonSaveLoad();
+            saveLoad.Add(io.Extension, io);
+
+            io = new FPXmlSaveLoad();
+            saveLoad.Add(io.Extension, io);
+
+            io = new FPTextSaveLoad();
+            saveLoad.Add(io.Extension, io);
+
+            return saveLoad;
+        }
+
+
+
+        #endregion
 
     }
 }

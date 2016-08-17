@@ -3,6 +3,7 @@ using System.IO;
 using System.Xml.Serialization;
 
 using FileParser.Entities;
+using FileParser.Helper;
 
 namespace FileParser.Parser
 {
@@ -12,7 +13,8 @@ namespace FileParser.Parser
     public class FPXmlSaveLoad : ISaveLoad
     {
 
-        private readonly string m_extention = "xml";
+        private readonly string m_defaultExtension = "xml";
+        private string m_extension = "xml";
 
 
 
@@ -23,11 +25,26 @@ namespace FileParser.Parser
         /// <summary>
         /// This return the Extention of this <see cref="FPXmlSaveLoad"/>.
         /// </summary>
-        public string Extention
+        public string Extension
         {
             get
             {
-                return m_extention;
+                if (String.IsNullOrEmpty(m_extension))
+                    m_extension = m_defaultExtension;
+                return m_extension;
+            }
+        }
+
+
+
+        /// <summary>
+        /// This return the default extention of this <see cref="FPXmlSaveLoad"/>.
+        /// </summary>
+        public string DefaultExtension
+        {
+            get
+            {
+                return m_defaultExtension;
             }
         }
 
@@ -106,6 +123,26 @@ namespace FileParser.Parser
             }
 
             return res;
+        }
+
+
+
+        /// <summary>
+        /// Change the Extention of this <see cref="FPXmlSaveLoad"/>.
+        /// </summary>
+        /// <param name="extension">Only letters are allowed.</param>
+        /// <exception cref="ArgumentException"></exception>
+        public void SetExtention(string extension)
+        {
+            ArgumentException ex;
+            if (FPHelper.IsExtentionValid(extension, out ex))
+            {
+                m_extension = extension;
+            }
+            else
+            {
+                throw ex;
+            }
         }
 
 
