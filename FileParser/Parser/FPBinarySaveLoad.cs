@@ -2,9 +2,6 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-using FileParser.Entities;
-using FileParser.Helper;
-
 namespace FileParser.Parser
 {
     /// <summary>

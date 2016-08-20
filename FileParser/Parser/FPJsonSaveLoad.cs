@@ -2,9 +2,6 @@
 using System.IO;
 using Newtonsoft.Json;
 
-using FileParser.Entities;
-using FileParser.Helper;
-
 namespace FileParser.Parser
 {
     /// <summary>

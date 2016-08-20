@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 using FileParser.Properties;
 
-namespace FileParser.Helper
+namespace FileParser
 {
     /// <summary>
     /// 

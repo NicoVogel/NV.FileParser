@@ -1,5 +1,4 @@
 ﻿using System;
-using FileParser.Entities;
 
 namespace FileParser
 {

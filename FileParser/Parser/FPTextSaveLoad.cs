@@ -1,9 +1,6 @@
 ﻿using System;
 using System.IO;
 
-using FileParser.Entities;
-using FileParser.Helper;
-
 namespace FileParser.Parser
 {
     /// <summary>
