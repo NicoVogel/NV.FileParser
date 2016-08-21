@@ -102,7 +102,7 @@ namespace FileParser.Parser
         /// <param name="value">This object get saved.</param>
         /// <param name="path">It get saved here. Must contain directory + filename.</param>
         /// <returns>Returns a <see cref="IOResult"/>.</returns>
-        public IOResult Save<T>(object value, string path)
+        public IOResult Save<T>(T value, string path)
         {
             IOResult res = new IOResult();
             XmlSerializer serializer = new XmlSerializer(typeof(T));

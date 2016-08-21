@@ -91,7 +91,7 @@ namespace FileParser
         /// <param name="path">Save the object at this path. String include file name!</param>
         /// <param name="type">Defines which save type be used to save the <paramref name="value"/>.</param>
         /// <returns>This result object <see cref="IOResult"/> contain exceptions.</returns>
-        public IOResult Save<T>(object value, string path, string type)
+        public IOResult Save<T>(T value, string path, string type)
         {
             IOResult result = null;
             try
@@ -102,7 +102,7 @@ namespace FileParser
                     if (AllowedIO.Contains(type))
                     {
                         if (SaveLoad[type] != null)
-                            result = SaveLoad[type].Save<T>(value, path);
+                            result = SaveLoad[type].Save(value, path);
                     }
                     else
                     {

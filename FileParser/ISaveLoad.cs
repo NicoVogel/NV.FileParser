@@ -37,8 +37,8 @@ namespace FileParser
         /// <typeparam name="T">This object type get saved.</typeparam>
         /// <param name="value">This object get saved.</param>
         /// <param name="path">It get saved here. Must contain directory + filename.</param>
-        /// <returns>Returns a <see cref="IOResult"/>.</returns>
-        IOResult Save<T>(object value, string path);
+        /// <returns>Returns 0a <see cref="IOResult"/>.</returns>
+        IOResult Save<T>(T value, string path);
 
 
 
