@@ -1,6 +1,6 @@
 ﻿using System;
 using FileParser.Exceptions;
-using Observer.LogObserver;
+using ExceptionObserver;
 
 namespace FileParser
 {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using FileParser.Parser;
 using FileParser.Properties;
 using FileParser.Exceptions;
-using Observer.LogObserver;
+using ExceptionObserver;
 
 namespace FileParser
 {

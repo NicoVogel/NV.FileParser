@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 using FileParser.Exceptions;
 using FileParser.Properties;
-using Observer.LogObserver;
+using ExceptionObserver;
 
 namespace FileParser.Parser
 {

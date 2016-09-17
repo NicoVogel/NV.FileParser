@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 using FileParser.Properties;
 using FileParser.Exceptions;
-using Observer.LogObserver;
+using ExceptionObserver;
 
 namespace FileParser
 {

@@ -3,7 +3,7 @@ using System.IO;
 using System.Xml.Serialization;
 
 using FileParser.Exceptions;
-using Observer.LogObserver;
+using ExceptionObserver;
 
 namespace FileParser.Parser
 {

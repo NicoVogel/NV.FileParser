@@ -1,7 +1,7 @@
 ﻿using System;
 
 using FileParser.Properties;
-using Observer.LogObserver;
+using ExceptionObserver;
 
 namespace FileParser.Exceptions
 {

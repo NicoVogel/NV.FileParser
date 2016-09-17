@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Observer.LogObserver
+namespace ExceptionObserver
 {
     /// <summary>
     /// This is the exception observer that recieves notifications of exceptions.

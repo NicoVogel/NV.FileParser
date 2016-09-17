@@ -7,8 +7,8 @@
     <ProjectGuid>{305D927D-50BC-4AD7-8D00-93D263B9DABB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Observer</RootNamespace>
-    <AssemblyName>Observer</AssemblyName>
+    <RootNamespace>ExceptionObserver</RootNamespace>
+    <AssemblyName>ExceptionObserver</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Observer.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\ExceptionObserver.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,9 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LogObserver\IExceptionNotification.cs" />
-    <Compile Include="LogObserver\IExceptionObserver.cs" />
-    <Compile Include="LogObserver\ExceptionNotification.cs" />
+    <Compile Include="IExceptionNotification.cs" />
+    <Compile Include="IExceptionObserver.cs" />
+    <Compile Include="ExceptionNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

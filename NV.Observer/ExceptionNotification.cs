@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Observer.LogObserver
+namespace ExceptionObserver
 {
     /// <summary>
     /// An usable exception notification that inherit from <see cref="IExceptionNotification"/>.
