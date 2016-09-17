@@ -61,7 +61,16 @@ namespace FileParser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The extension is too long (more than 5 characters)..
+        ///   Looks up a localized string similar to There are also additional information in the Exception.Data property..
+        /// </summary>
+        internal static string exceptionMoreInformation {
+            get {
+                return ResourceManager.GetString("exceptionMoreInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The extension is too long (more than {0} characters)..
         /// </summary>
         internal static string helperExtensionLengthLong {
             get {
@@ -70,7 +79,7 @@ namespace FileParser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The extension is not long enough (less than 3 characters)..
+        ///   Looks up a localized string similar to The extension is not long enough (less than {0} characters)..
         /// </summary>
         internal static string helperExtensionLengthShort {
             get {
@@ -88,7 +97,16 @@ namespace FileParser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The String is longer than {0} charecters..
+        ///   Looks up a localized string similar to The extension can not be null..
+        /// </summary>
+        internal static string helperExtensionNull {
+            get {
+                return ResourceManager.GetString("helperExtensionNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The path is longer than {0} charecters. path=&apos;{1}&apos;.
         /// </summary>
         internal static string helperPathLenght {
             get {
@@ -97,7 +115,7 @@ namespace FileParser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Der gewählte Datentyp kann nicht gelesen werden..
+        ///   Looks up a localized string similar to The extension does not exist, so it can&apos;t be loaded.
         /// </summary>
         internal static string LoadNoAllowedIO {
             get {
@@ -106,7 +124,34 @@ namespace FileParser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Der gewählte Datentyp kann nicht gespeichert werden..
+        ///   Looks up a localized string similar to load.
+        /// </summary>
+        internal static string methodLoadName {
+            get {
+                return ResourceManager.GetString("methodLoadName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to read.
+        /// </summary>
+        internal static string methodReadName {
+            get {
+                return ResourceManager.GetString("methodReadName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An exception was thrown in the {0} method of the {1} parser. You can find more information in the innerException property. .
+        /// </summary>
+        internal static string parserException {
+            get {
+                return ResourceManager.GetString("parserException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The extension does not exist, so it can&apos;t be saved.
         /// </summary>
         internal static string SaveNoAllowedIO {
             get {

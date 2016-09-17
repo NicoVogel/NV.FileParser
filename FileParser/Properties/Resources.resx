@@ -118,21 +118,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="helperExtensionLengthLong" xml:space="preserve">
-    <value>The extension is too long (more than 5 characters).</value>
+    <value>The extension is too long (more than {0} characters).</value>
   </data>
   <data name="helperExtensionLengthShort" xml:space="preserve">
-    <value>The extension is not long enough (less than 3 characters).</value>
+    <value>The extension is not long enough (less than {0} characters).</value>
   </data>
   <data name="helperExtensionLetter" xml:space="preserve">
     <value>The extension contain non letter characters.</value>
   </data>
   <data name="helperPathLenght" xml:space="preserve">
-    <value>The String is longer than {0} charecters.</value>
+    <value>The path is longer than {0} charecters. path='{1}'</value>
   </data>
   <data name="LoadNoAllowedIO" xml:space="preserve">
-    <value>Der gewählte Datentyp kann nicht gelesen werden.</value>
+    <value>The extension does not exist, so it can't be loaded</value>
   </data>
   <data name="SaveNoAllowedIO" xml:space="preserve">
-    <value>Der gewählte Datentyp kann nicht gespeichert werden.</value>
+    <value>The extension does not exist, so it can't be saved</value>
+  </data>
+  <data name="helperExtensionNull" xml:space="preserve">
+    <value>The extension can not be null.</value>
+  </data>
+  <data name="methodLoadName" xml:space="preserve">
+    <value>load</value>
+  </data>
+  <data name="methodReadName" xml:space="preserve">
+    <value>read</value>
+  </data>
+  <data name="parserException" xml:space="preserve">
+    <value>An exception was thrown in the {0} method of the {1} parser. You can find more information in the innerException property. </value>
+  </data>
+  <data name="exceptionMoreInformation" xml:space="preserve">
+    <value>There are also additional information in the Exception.Data property.</value>
   </data>
 </root>

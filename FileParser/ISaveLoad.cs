@@ -1,4 +1,6 @@
 ﻿using System;
+using FileParser.Exceptions;
+using Observer.LogObserver;
 
 namespace FileParser
 {
@@ -7,6 +9,9 @@ namespace FileParser
     /// </summary>
     public interface ISaveLoad
     {
+
+        #region Properties
+
 
 
         /// <summary>
@@ -23,10 +28,21 @@ namespace FileParser
 
 
         /// <summary>
+        /// This observer get notifyed if an exception get thrown.
+        /// </summary>
+        IExceptionObserver Observer { get; set; }
+
+
+
+        #endregion
+
+
+
+        /// <summary>
         /// Change the Extention of this <see cref="ISaveLoad"/>.
         /// </summary>
         /// <param name="extention">Only letters are allowed.</param>
-        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="FPException"></exception>
         void SetExtention(string extention);
 
 
@@ -37,8 +53,8 @@ namespace FileParser
         /// <typeparam name="T">This object type get saved.</typeparam>
         /// <param name="value">This object get saved.</param>
         /// <param name="path">It get saved here. Must contain directory + filename.</param>
-        /// <returns>Returns 0a <see cref="IOResult"/>.</returns>
-        IOResult Save<T>(T value, string path);
+        /// <exception cref="FPParserSaveException"></exception>
+        void Save<T>(T value, string path);
 
 
 
@@ -47,8 +63,9 @@ namespace FileParser
         /// </summary>
         /// <typeparam name="T">This object type get loaded.</typeparam>
         /// <param name="path">Load data from this file. Must contain directory + filename.</param>
-        /// <returns>Returns a <see cref="IOResult"/>.</returns>
-        IOResult Load<T>(string path);
+        /// <returns>Returns an object of type T</returns>
+        /// <exception cref="FPParserLoadException"></exception>
+        T Load<T>(string path);
     }
 }
 

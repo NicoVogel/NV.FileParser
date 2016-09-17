@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 
+using FileParser.Exceptions;
+using Observer.LogObserver;
+
 namespace FileParser.Parser
 {
     /// <summary>
@@ -10,7 +13,8 @@ namespace FileParser.Parser
     {
 
         private readonly string m_defaultExtension = "txt";
-        private string m_extension = "txt";
+        private string m_extension;
+        private IExceptionObserver m_observer;
 
 
 
@@ -45,6 +49,23 @@ namespace FileParser.Parser
         }
 
 
+        /// <summary>
+        /// This observer get notifyed if an exception get thrown.
+        /// </summary>
+        public IExceptionObserver Observer
+        {
+            get
+            {
+                return m_observer;
+            }
+
+            set
+            {
+                m_observer = value;
+            }
+        }
+
+
 
         #endregion
 
@@ -53,9 +74,10 @@ namespace FileParser.Parser
         /// <summary>
         /// Create a new instace of <see cref="FPTextSaveLoad"/>.
         /// </summary>
-        public FPTextSaveLoad()
+        /// <param name="observer">This observer get notified if an exception get thrown.</param>
+        public FPTextSaveLoad(IExceptionObserver observer = null)
         {
-
+            Observer = observer;
         }
 
 
@@ -70,21 +92,17 @@ namespace FileParser.Parser
         /// <typeparam name="T">This object type get saved.</typeparam>
         /// <param name="value">This object get saved.</param>
         /// <param name="path">It get saved here. Must contain directory + filename.</param>
-        /// <returns>Returns a <see cref="IOResult"/>.</returns>
-        public IOResult Save<T>(T value, string path)
+        /// <exception cref="FPParserSaveException"></exception>
+        public void Save<T>(T value, string path)
         {
-            IOResult res = new IOResult();
-
             try
             {
                 File.WriteAllText(path, value.ToString());
             }
-            catch (Exception ex)
+            catch (Exception innerException)
             {
-                res.IOException = ex;
+                FPParserExceptionHandler.HandleParserSaveException(innerException, nameof(FPBinarySaveLoad), path, value, typeof(T), Observer);
             }
-
-            return res;
         }
 
 
@@ -94,21 +112,21 @@ namespace FileParser.Parser
         /// </summary>
         /// <typeparam name="T">This object type get loaded.</typeparam>
         /// <param name="path">Load data from this file. Must contain directory + filename.</param>
-        /// <returns>Returns a <see cref="IOResult"/>.</returns>
-        public IOResult Load<T>(string path)
+        /// <returns>Returns an object of type T</returns>
+        /// <exception cref="FPParserLoadException"></exception>
+        public T Load<T>(string path)
         {
-            IOResult res = new IOResult();
-
+            T readValue = default(T);
             try
             {
-                res.Value = File.ReadAllText(path);
+                var read = File.ReadAllText(path);
+                readValue = (T)Convert.ChangeType(read, typeof(T));
             }
-            catch (Exception ex)
+            catch (Exception innerException)
             {
-                res.IOException = ex;
+                FPParserExceptionHandler.HandleParserLoadException(innerException, nameof(FPBinarySaveLoad), path, Observer);
             }
-
-            return res;
+            return readValue;
         }
 
 
@@ -143,7 +161,15 @@ namespace FileParser.Parser
         /// <returns>True if it worked, false if not.</returns>
         public bool Save(string text, string path)
         {
-            return !Save<String>(text, path).HasError;
+            try
+            {
+                Save<String>(text, path);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
 
@@ -152,18 +178,10 @@ namespace FileParser.Parser
         /// Change the Extention of this <see cref="FPTextSaveLoad"/>.
         /// </summary>
         /// <param name="extension">Only letters are allowed.</param>
-        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="FPException"></exception>
         public void SetExtention(string extension)
         {
-            ArgumentException ex;
-            if (FPHelper.IsExtentionValid(extension, out ex))
-            {
-                m_extension = extension;
-            }
-            else
-            {
-                throw ex;
-            }
+            m_extension = FPHelper.SetExtenstionManager(extension, Observer);
         }
 
 
