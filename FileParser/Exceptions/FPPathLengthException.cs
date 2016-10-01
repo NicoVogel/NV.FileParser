@@ -15,6 +15,7 @@ namespace FileParser.Exceptions
         /// create a new <see cref="FPPathLengthException"/> with a message.
         /// </summary>
         /// <param name="message">Contain the exception message</param>
-        public FPPathLengthException(string message) : base(message) { }
+        /// <param name="eventID">The id of this exception</param>
+        public FPPathLengthException(string message, int eventID) : base(message, eventID) { }
     }
 }

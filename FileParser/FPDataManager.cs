@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using FileParser.Parser;
 using FileParser.Properties;
 using FileParser.Exceptions;
-using ExceptionObserver;
 
 namespace FileParser
 {
@@ -16,7 +15,6 @@ namespace FileParser
     {
 
         private Dictionary<string, ISaveLoad> m_saveLoad;
-        private IExceptionObserver m_observer;
 
 
 
@@ -68,17 +66,6 @@ namespace FileParser
 
 
 
-        /// <summary>
-        /// This observer get notifyed when an exception get thrown.
-        /// </summary>
-        public IExceptionObserver Observer
-        {
-            get { return m_observer; }
-            set { m_observer = value; }
-        }
-
-
-
         #endregion
 
 
@@ -86,10 +73,8 @@ namespace FileParser
         /// <summary>
         /// Create a new instance of <see cref="FPDataManager"/>.
         /// </summary>
-        /// <param name="observer">This observer get notified if an exception get thrown.</param>
-        public FPDataManager(IExceptionObserver observer = null)
+        public FPDataManager()
         {
-            Observer = observer;
             SaveLoad = defaultSaveLoadObjects();
         }
 
@@ -109,26 +94,35 @@ namespace FileParser
         /// <exception cref="FPException"></exception>
         public void Save<T>(T value, string path, string type)
         {
-            FPException ex = null;
-            if (FPHelper.IsPathValid(path, out ex))
+            try
             {
-                if (AllowedIO.Contains(type))
+                FPException ex = null;
+                if (FPHelper.IsPathValid(path, out ex))
                 {
-                    if (SaveLoad[type] != null)
-                        SaveLoad[type].Save(value, path);
+                    if (AllowedIO.Contains(type))
+                    {
+                        if (SaveLoad[type] != null)
+                            SaveLoad[type].Save(value, path);
+                    }
+                    else
+                    {
+                        ex = new FPNotAllowedIOException(Resources.ErrorSaveNoAllowedIO + "\n" + Resources.exceptionMoreInformation);
+                        ex.Data.Add("type", type);
+                        ex.Data.Add("allowedTypes", AllowedIO);
+                    }
                 }
-                else
+                if (ex != null)
                 {
-                    ex = new FPNotAllowedIOException(Resources.SaveNoAllowedIO + "\n" + Resources.exceptionMoreInformation);
-                    ex.Data.Add("type", type);
-                    ex.Data.Add("allowedTypes", AllowedIO);
+                    throw ex;
                 }
             }
-            if (ex != null)
+            catch(FPException fpEx)
             {
-                if (Observer != null)
-                    Observer.Notify(new ExceptionNotification(ex));
-                throw ex;
+                throw fpEx;
+            }
+            catch(Exception ex)
+            {
+                throw new FPManagerException(String.Format(Resources.ErrorManagerSave, path, type), ex, DiagnosticEvents.DataManagerErrorSave);
             }
         }
 
@@ -144,31 +138,39 @@ namespace FileParser
         /// <exception cref="FPException"></exception>
         public T Load<T>(string path, string type)
         {
-            T readValue = default(T);
-            FPException ex;
-
-            if (FPHelper.IsPathValid(path, out ex))
+            try
             {
-                if (AllowedIO.Contains(type))
-                {
-                    if (SaveLoad[type] != null)
-                        readValue = SaveLoad[type].Load<T>(path);
-                }
-                else
-                {
-                    ex = new FPNotAllowedIOException(Resources.LoadNoAllowedIO + "\n" + Resources.exceptionMoreInformation);
-                    ex.Data.Add("type", type);
-                    ex.Data.Add("allowedTypes", AllowedIO);
-                }
-            }
-            if (ex != null)
-            {
-                if (Observer != null)
-                    Observer.Notify(new ExceptionNotification(ex));
-                throw ex;
-            }
+                T readValue = default(T);
+                FPException ex;
 
-            return readValue;
+                if (FPHelper.IsPathValid(path, out ex))
+                {
+                    if (AllowedIO.Contains(type))
+                    {
+                        if (SaveLoad[type] != null)
+                            readValue = SaveLoad[type].Load<T>(path);
+                    }
+                    else
+                    {
+                        ex = new FPNotAllowedIOException(Resources.ErrorLoadNoAllowedIO + "\n" + Resources.exceptionMoreInformation);
+                        ex.Data.Add("type", type);
+                        ex.Data.Add("allowedTypes", AllowedIO);
+                    }
+                }
+                if (ex != null)
+                {
+                    throw ex;
+                }
+                return readValue;
+            }
+            catch (FPException fpEx)
+            {
+                throw fpEx;
+            }
+            catch (Exception ex)
+            {
+                throw new FPManagerException(String.Format(Resources.ErrorManagerLoad, path, type), ex, DiagnosticEvents.DataManagerErrorLoad);
+            }
         }
 
 
@@ -189,16 +191,16 @@ namespace FileParser
             var saveLoad = new Dictionary<string, ISaveLoad>();
             ISaveLoad io = null;
 
-            io = new FPBinarySaveLoad(Observer);
+            io = new FPBinarySaveLoad();
             saveLoad.Add(io.Extension, io);
 
-            io = new FPJsonSaveLoad(Observer);
+            io = new FPJsonSaveLoad();
             saveLoad.Add(io.Extension, io);
 
-            io = new FPXmlSaveLoad(Observer);
+            io = new FPXmlSaveLoad();
             saveLoad.Add(io.Extension, io);
 
-            io = new FPTextSaveLoad(Observer);
+            io = new FPTextSaveLoad();
             saveLoad.Add(io.Extension, io);
 
             return saveLoad;

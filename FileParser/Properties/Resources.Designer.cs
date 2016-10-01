@@ -61,6 +61,87 @@ namespace FileParser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The extension is too long (more than {0} characters)..
+        /// </summary>
+        internal static string ErrorHelperLengthLong {
+            get {
+                return ResourceManager.GetString("ErrorHelperLengthLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The extension is not long enough (less than {0} characters)..
+        /// </summary>
+        internal static string ErrorHelperLengthShort {
+            get {
+                return ResourceManager.GetString("ErrorHelperLengthShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The extension contain non letter characters..
+        /// </summary>
+        internal static string ErrorHelperLetter {
+            get {
+                return ResourceManager.GetString("ErrorHelperLetter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The extension can not be null..
+        /// </summary>
+        internal static string ErrorHelperNull {
+            get {
+                return ResourceManager.GetString("ErrorHelperNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The extension does not exist, so it can&apos;t be loaded.
+        /// </summary>
+        internal static string ErrorLoadNoAllowedIO {
+            get {
+                return ResourceManager.GetString("ErrorLoadNoAllowedIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An exception was thrown in the FPDataManager load method with the path &apos;{0}&apos; and extension &apos;{1}&apos;. See innerException for more information.
+        /// </summary>
+        internal static string ErrorManagerLoad {
+            get {
+                return ResourceManager.GetString("ErrorManagerLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An exception was thrown in the FPDataManager save method with the path &apos;{0}&apos; and extension &apos;{1}&apos;. See innerException for more information.
+        /// </summary>
+        internal static string ErrorManagerSave {
+            get {
+                return ResourceManager.GetString("ErrorManagerSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An exception was thrown in the {0} method of the {1} parser. You can find more information in the innerException property. .
+        /// </summary>
+        internal static string ErrorParser {
+            get {
+                return ResourceManager.GetString("ErrorParser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The extension does not exist, so it can&apos;t be saved.
+        /// </summary>
+        internal static string ErrorSaveNoAllowedIO {
+            get {
+                return ResourceManager.GetString("ErrorSaveNoAllowedIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are also additional information in the Exception.Data property..
         /// </summary>
         internal static string exceptionMoreInformation {
@@ -70,56 +151,11 @@ namespace FileParser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The extension is too long (more than {0} characters)..
-        /// </summary>
-        internal static string helperExtensionLengthLong {
-            get {
-                return ResourceManager.GetString("helperExtensionLengthLong", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The extension is not long enough (less than {0} characters)..
-        /// </summary>
-        internal static string helperExtensionLengthShort {
-            get {
-                return ResourceManager.GetString("helperExtensionLengthShort", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The extension contain non letter characters..
-        /// </summary>
-        internal static string helperExtensionLetter {
-            get {
-                return ResourceManager.GetString("helperExtensionLetter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The extension can not be null..
-        /// </summary>
-        internal static string helperExtensionNull {
-            get {
-                return ResourceManager.GetString("helperExtensionNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The path is longer than {0} charecters. path=&apos;{1}&apos;.
         /// </summary>
         internal static string helperPathLenght {
             get {
                 return ResourceManager.GetString("helperPathLenght", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The extension does not exist, so it can&apos;t be loaded.
-        /// </summary>
-        internal static string LoadNoAllowedIO {
-            get {
-                return ResourceManager.GetString("LoadNoAllowedIO", resourceCulture);
             }
         }
         
@@ -138,24 +174,6 @@ namespace FileParser.Properties {
         internal static string methodReadName {
             get {
                 return ResourceManager.GetString("methodReadName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An exception was thrown in the {0} method of the {1} parser. You can find more information in the innerException property. .
-        /// </summary>
-        internal static string parserException {
-            get {
-                return ResourceManager.GetString("parserException", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The extension does not exist, so it can&apos;t be saved.
-        /// </summary>
-        internal static string SaveNoAllowedIO {
-            get {
-                return ResourceManager.GetString("SaveNoAllowedIO", resourceCulture);
             }
         }
     }

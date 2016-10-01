@@ -1,6 +1,5 @@
 ﻿using System;
 using FileParser.Exceptions;
-using ExceptionObserver;
 
 namespace FileParser
 {
@@ -25,14 +24,7 @@ namespace FileParser
         /// </summary>
         string DefaultExtension { get; }
 
-
-
-        /// <summary>
-        /// This observer get notifyed if an exception get thrown.
-        /// </summary>
-        IExceptionObserver Observer { get; set; }
-
-
+        
 
         #endregion
 

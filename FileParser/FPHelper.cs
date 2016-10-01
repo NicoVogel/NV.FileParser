@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 
 using FileParser.Properties;
 using FileParser.Exceptions;
-using ExceptionObserver;
 
 namespace FileParser
 {
@@ -58,7 +57,7 @@ namespace FileParser
             int length = 255;
             if (path.Length > length)
             {
-                ex = new FPPathLengthException(String.Format(Resources.helperPathLenght, length.ToString(), path) + "\n" + Resources.exceptionMoreInformation);
+                ex = new FPPathLengthException(String.Format(Resources.helperPathLenght, length.ToString(), path) + "\n" + Resources.exceptionMoreInformation, DiagnosticEvents.HelperErrorPathLength);
                 ex.Data.Add("path", path);
                 ex.Data.Add("maxLength", length);
                 return false;
@@ -99,7 +98,7 @@ namespace FileParser
                 {
                     if (extension.Length < minLength)
                     {
-                        ex = new FPExtensionLengthException(String.Format(Resources.helperExtensionLengthShort, minLength) + "\n" + Resources.exceptionMoreInformation);
+                        ex = new FPExtensionException(String.Format(Resources.ErrorHelperLengthShort, minLength) + "\n" + Resources.exceptionMoreInformation, DiagnosticEvents.HelperErrorExtensionTooShort);
                         ex.Data.Add("extension", extension);
                         ex.Data.Add("minLength", minLength);
                     }
@@ -107,7 +106,7 @@ namespace FileParser
                     {
                         if (extension.Length > maxLength)
                         {
-                            ex = new FPExtensionLengthException(String.Format(Resources.helperExtensionLengthLong, maxLength) + "\n" + Resources.exceptionMoreInformation);
+                            ex = new FPExtensionException(String.Format(Resources.ErrorHelperLengthLong, maxLength) + "\n" + Resources.exceptionMoreInformation, DiagnosticEvents.HelperErrorExtensionTooLong);
                             ex.Data.Add("extension", extension);
                             ex.Data.Add("maxLength", maxLength);
                         }
@@ -120,12 +119,12 @@ namespace FileParser
                 }
                 else
                 {
-                    ex = new FPExtensionNonLetterException(Resources.helperExtensionLetter + "\n" + Resources.exceptionMoreInformation);
+                    ex = new FPExtensionException(Resources.ErrorHelperLetter + "\n" + Resources.exceptionMoreInformation, DiagnosticEvents.HelperErrorExtensionNonLetterCharacters);
                     ex.Data.Add("regex", pattern);
                 }
             }
             else
-                ex = new FPExtenstionNullException(Resources.helperExtensionNull);
+                ex = new FPExtensionException(Resources.ErrorHelperNull, DiagnosticEvents.HelperErrorExtensionNull);
 
             return false;
         }
@@ -137,9 +136,8 @@ namespace FileParser
         /// It returns the extension if everything is ok, otherwise it throw an excetion and notify the observer.
         /// </summary>
         /// <param name="extension">this string get checked</param>
-        /// <param name="observer">can be null</param>
         /// <returns>Returns the <paramref name="extension"/> if it is valid.</returns>
-        public static string SetExtenstionManager(string extension, IExceptionObserver observer)
+        public static string SetExtenstionManager(string extension)
         {
             FPException ex;
             if (IsExtentionValid(extension, out ex))
@@ -148,8 +146,6 @@ namespace FileParser
             }
             else
             {
-                if (observer != null)
-                    observer.Notify(new ExceptionNotification(ex));
                 throw ex;
             }
         }

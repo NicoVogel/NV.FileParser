@@ -46,10 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\DiagnosticEvents.cs" />
     <Compile Include="Exceptions\FPException.cs" />
-    <Compile Include="Exceptions\FPExtensionLengthException.cs" />
-    <Compile Include="Exceptions\FPExtensionNonLetterException.cs" />
-    <Compile Include="Exceptions\FPExtenstionNullException.cs" />
+    <Compile Include="Exceptions\FPExtensionException.cs" />
+    <Compile Include="Exceptions\FPManagerException.cs" />
     <Compile Include="Exceptions\FPNotAllowedIOException.cs" />
     <Compile Include="Exceptions\FPParserExceptionHandler.cs" />
     <Compile Include="Exceptions\FPParserLoadException.cs" />
@@ -74,12 +74,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NV.Observer\NV.Observer.csproj">
-      <Project>{305d927d-50bc-4ad7-8d00-93d263b9dabb}</Project>
-      <Name>NV.Observer</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logging\" />

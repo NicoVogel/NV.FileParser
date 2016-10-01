@@ -3,7 +3,6 @@ using System.IO;
 using System.Xml.Serialization;
 
 using FileParser.Exceptions;
-using ExceptionObserver;
 
 namespace FileParser.Parser
 {
@@ -15,7 +14,6 @@ namespace FileParser.Parser
 
         private readonly string m_defaultExtension = "xml";
         private string m_extension;
-        private IExceptionObserver m_observer;
 
 
 
@@ -51,24 +49,6 @@ namespace FileParser.Parser
 
 
 
-        /// <summary>
-        /// This observer get notifyed if an exception get thrown.
-        /// </summary>
-        public IExceptionObserver Observer
-        {
-            get
-            {
-                return m_observer;
-            }
-
-            set
-            {
-                m_observer = value;
-            }
-        }
-
-
-
         #endregion
 
 
@@ -76,10 +56,8 @@ namespace FileParser.Parser
         /// <summary>
         /// Create a new instace of <see cref="FPXmlSaveLoad"/>.
         /// </summary>
-        /// <param name="observer">This observer get notified if an exception get thrown.</param>
-        public FPXmlSaveLoad(IExceptionObserver observer = null)
+        public FPXmlSaveLoad()
         {
-            Observer = observer;
         }
 
 
@@ -109,7 +87,7 @@ namespace FileParser.Parser
             }
             catch (Exception innerException)
             {
-                FPParserExceptionHandler.HandleParserLoadException(innerException, nameof(FPBinarySaveLoad), path, Observer);
+                FPParserExceptionHandler.HandleParserLoadException(innerException, nameof(FPBinarySaveLoad), path, DiagnosticEvents.ParserErrorXmlLoad);
             }
             return readValue;
         }
@@ -135,7 +113,7 @@ namespace FileParser.Parser
             }
             catch (Exception innerException)
             {
-                FPParserExceptionHandler.HandleParserSaveException(innerException, nameof(FPBinarySaveLoad), path, value, typeof(T), Observer);
+                FPParserExceptionHandler.HandleParserSaveException(innerException, nameof(FPBinarySaveLoad), path, value, typeof(T), DiagnosticEvents.ParserErrorXmlSave);
             }
         }
 
@@ -148,7 +126,7 @@ namespace FileParser.Parser
         /// <exception cref="FPException"></exception>
         public void SetExtention(string extension)
         {
-            m_extension = FPHelper.SetExtenstionManager(extension, Observer);
+            m_extension = FPHelper.SetExtenstionManager(extension);
         }
 
 

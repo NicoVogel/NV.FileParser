@@ -9,15 +9,13 @@ namespace FileParser.Exceptions
     /// <summary>
     /// Get thrown if the file extension is to long or to short.
     /// </summary>
-    public class FPExtensionLengthException : FPException
+    public class FPExtensionException : FPException
     {
         /// <summary>
-        /// create a new <see cref="FPExtensionLengthException"/> with a message.
+        /// create a new <see cref="FPExtensionException"/> with a message.
         /// </summary>
         /// <param name="message">Contain the exception message</param>
-        public FPExtensionLengthException(string message) : base(message)
-        {
-
-        }
+        /// <param name="eventID">The id of this exception</param>
+        public FPExtensionException(string message, int eventID) : base(message, eventID) { }
     }
 }

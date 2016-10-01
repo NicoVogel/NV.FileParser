@@ -16,6 +16,7 @@ namespace FileParser.Exceptions
         /// </summary>
         /// <param name="message">Contain the exception message</param>
         /// <param name="innerException">Contain the exception that was thrown while saving a file</param>
-        public FPParserSaveException(string message, Exception innerException) : base(message, innerException) { }
+        /// <param name="eventID">The id of this exception</param>
+        public FPParserSaveException(string message, Exception innerException, int eventID) : base(message, innerException, eventID) { }
     }
 }
