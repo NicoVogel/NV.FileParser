@@ -84,8 +84,9 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetPath)" "$(SolutionDir)\..\NV.LogWriter\NV.LogWriter\Dlls\$(TargetFileName)"
+copy /Y "$(TargetDir)$(TargetName).xml" "$(SolutionDir)\..\NV.LogWriter\NV.LogWriter\Dlls\$(TargetName).xml"
 copy /Y "$(TargetPath)" "$(SolutionDir)\..\NV.FinancialManagement\FinancialManagement.BusinessLayer\Dlls\$(TargetFileName)"
-</PostBuildEvent>
+copy /Y "$(TargetDir)$(TargetName).xml" "$(SolutionDir)\..\NV.FinancialManagement\FinancialManagement.BusinessLayer\Dlls\$(TargetName).xml"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
